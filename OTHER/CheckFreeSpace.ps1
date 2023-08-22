@@ -14,7 +14,7 @@ $form.Controls.Add($button)
 $button.Add_Click({ $form.close() })
 $form.TopMost = $True
 
-$disk = get-wmiobject -class win32_logicaldisk | where-object {$_.DeviceID -eq "C:"}
+$disk = get-cimInstance -ClassName win32_logicaldisk | where-object {$_.DeviceID -eq "C:"}
 if($disk.FreeSpace/$disk.Size*100 -le 25){
     #New-BurntToastNotification -text "Свободного места на диске С менее 25%!!!" -Sound Reminder
     $form.ShowDialog()
