@@ -7,21 +7,21 @@ $label = New-Object System.Windows.Forms.Label
 $label.Text = 'На вашем SSD места менее 25%!'
 $label.Location = New-Object System.Drawing.Point 90,40
 $form.Controls.Add($label)
-$button = New-Object Windows.Forms.Button
-$button.Text = "Ок"
-$button.Location = New-Object System.Drawing.Point 100, 200
-$form.Controls.Add($button)
-$button.Add_Click({ $form.close() })
+$button1 = New-Object Windows.Forms.Button
+$button1.Text = "Ок"
+$button1.Location = New-Object System.Drawing.Point 50, 200
+$form.Controls.Add($button1)
+$button1.Add_Click({ $form.close() })
+$button2 = New-Object Windows.Forms.Button
+$button2.Text = "Очистка"
+$button2.Location = New-Object System.Drawing.Point 150, 200
+$form.Controls.Add($button2)
+$button2.Add_Click({cleanmgr.exe; start-sleep -Milliseconds 700; $form.close()})
 $form.TopMost = $True
 
 $disk = get-cimInstance -ClassName win32_logicaldisk | where-object {$_.DeviceID -eq "C:"}
 if($disk.FreeSpace/$disk.Size*100 -le 25){
-    #New-BurntToastNotification -text "Свободного места на диске С менее 25%!!!" -Sound Reminder
     $form.ShowDialog()
-    #New-BurntToastNotification -text "Свободного места на диске С менее 25%!!!" -Sound Reminder
-
-    
-
 }
 
 
