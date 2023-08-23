@@ -1,13 +1,9 @@
-﻿$ProxyAndUri = @{
-    uri = 'https://drive.google.com/uc?export=download&id=19nI8JJVagEyc_YjP3xZDneVCbdztx7my'
-    ProxyUseDefaultCredentials = $true
-    proxy                      = 'Http://172.23.17.3:8080'
-}
+﻿$Uri = 'https://drive.google.com/uc?export=download&id=19nI8JJVagEyc_YjP3xZDneVCbdztx7my'
 $tempkatalog = "$PSScriptroot\$(get-random -minimum 100000000 -maximum 100000000000000000)"
 $QLocation = "$env:LOCALAPPDATA"
 $qfile = "$tempkatalog\q.zip"
 new-item -path "$tempkatalog" -ItemType Directory -ErrorAction Stop | Out-Null
-Invoke-WebRequest @ProxyAndUri -OutFile $qfile
+Invoke-WebRequest -uri $Uri -OutFile $qfile
 Expand-Archive -path $qfile  -DestinationPath $QLocation
 
 $Qexe = Get-Item "$env:LOCALAPPDATA\QTRANS*\*.exe"
