@@ -29,13 +29,15 @@ catch {
     throw "$($_.Exception.Message)"
 }
 Expand-Archive -path $qfile  -DestinationPath $QLocation
+New-Item -Path -Name -
 
-$Qexe = Get-Item "$env:LOCALAPPDATA\QTRANS*\*.exe"
+
+<#$Qexe = Get-Item "$env:LOCALAPPDATA\QTRANS*\*.exe"
 
 $shell = New-Object -ComObject WScript.Shell
 $lnk = $shell.CreateShortcut("$env:AppData\Microsoft\Windows\Start Menu\Programs\Startup\Q.lnk")
 $lnk.TargetPath = $Qexe.FullName
-$lnk.Save()
+$lnk.Save()#>
 
 
 
