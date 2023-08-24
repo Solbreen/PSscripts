@@ -2,8 +2,18 @@
 $tempkatalog = "$PSScriptroot\$(get-random -minimum 100000000 -maximum 100000000000000000)"
 $QLocation = "$env:LOCALAPPDATA"
 $qfile = "$tempkatalog\q.zip"
-new-item -path "$tempkatalog" -ItemType Directory -ErrorAction Stop | Out-Null
-Invoke-WebRequest -uri $Uri -OutFile $qfile
+try {
+    new-item -path "$tempkatalog" -ItemType Directory -ErrorAction Stop | Out-Null
+}
+catch {
+    throw "$($_.Exception.Message)"
+}
+try {
+    Invoke-WebRequest -uri $Uri -OutFile $qfile -ErrorAction Stop
+}
+catch {
+    throw "$($_.Exception.Message)"
+}
 Expand-Archive -path $qfile  -DestinationPath $QLocation
 
 $Qexe = Get-Item "$env:LOCALAPPDATA\QTRANS*\*.exe"
