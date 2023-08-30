@@ -1,15 +1,13 @@
 ﻿<#
 .SYNOPSIS
-    A short one-line action-based description, e.g. 'Tests if a function is valid'
+    Установщик QTranslate
 .DESCRIPTION
-    A longer description of the function, its purpose, common use cases, etc.
-.NOTES
-    Information or caveats about the function e.g. 'This function is not supported in Linux'
+    Скрипт качает архив с QTranslate с гуглдиска, разархивирует его в appdata\local,
+    подтягивает с моего гита настройки options.json для программы в папку data в папке qtranslate, 
+    на сам exe файл делается ссылка в автоматическом загрузчике, таким образом при каждом вхождении в сессию 
+    загрузчик будет включать qtranslate автоматически, активировать его руками не нужно.
 .LINK
-    Specify a URI to a help page, this will show when Get-Help -Online is used.
-.EXAMPLE
-    Test-MyTestFunction -Verbose
-    Explanation of the function or its result. You can include multiple examples with additional .EXAMPLE lines
+    https://github.com/Solbreen/PSscripts/blob/main/OTHER/QtranslateScript/QTranslateScript.ps1
 #>
 
 $Uri = 'https://drive.google.com/uc?export=download&id=19nI8JJVagEyc_YjP3xZDneVCbdztx7my'
